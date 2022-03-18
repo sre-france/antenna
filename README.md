@@ -2,6 +2,8 @@
 
 An automated and collaborative broadcast system to share news and announcements on Twitter and Telegram.
 
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
+
 It's based on code and contributions of [reliability.re](https://github.com/sre-france/reliability.re).
 
 ## Contributing
