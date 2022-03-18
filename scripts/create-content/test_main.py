@@ -73,6 +73,13 @@ class TestSlugyFunction(unittest.TestCase):
         output = slugify(date, title)
         self.assertEqual(expected, output)
 
+    def test_exclamation_mark(self):
+        date = "2021-03-09"
+        title = "Hello, SRE world!"
+        expected = "posts/2021-03-09-hello-sre-world.md"
+        output = slugify(date, title)
+        self.assertEqual(expected, output)
+
 
 class TestMain(unittest.TestCase):
     @mock.patch("sys.stdout", new_callable=StringIO)
