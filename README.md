@@ -1,4 +1,4 @@
-# Antenna
+# 📡 Antenna
 
 An automated and collaborative broadcast system to share news and announcements on Twitter and Telegram.
 
