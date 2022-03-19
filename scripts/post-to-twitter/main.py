@@ -31,6 +31,7 @@ CONSUMER_KEY = os.environ.get("TWITTER_CONSUMER_KEY")
 CONSUMER_SECRET = os.environ.get("TWITTER_CONSUMER_SECRET")
 ACCESS_TOKEN_KEY = os.environ.get("TWITTER_ACCESS_TOKEN_KEY")
 ACCESS_TOKEN_SECRET = os.environ.get("TWITTER_ACCESS_TOKEN_SECRET")
+DRY_RUN = os.environ.get("TWITTER_DRY_RUN", "false").lower() in ["true", "yes", "1"]
 
 SHORT_URL_LENGTH = 23
 
@@ -141,16 +142,17 @@ def send_tweets(tweets):
             )
         )
 
-    api = twitter.Api(
-        consumer_key=CONSUMER_KEY,
-        consumer_secret=CONSUMER_SECRET,
-        access_token_key=ACCESS_TOKEN_KEY,
-        access_token_secret=ACCESS_TOKEN_SECRET,
-    )
-    last_reply_to_id = None
-    for tweet in tweets:
-        status = api.PostUpdate(tweet, in_reply_to_status_id=last_reply_to_id)
-        last_reply_to_id = status.id
+    if not DRY_RUN:
+        api = twitter.Api(
+            consumer_key=CONSUMER_KEY,
+            consumer_secret=CONSUMER_SECRET,
+            access_token_key=ACCESS_TOKEN_KEY,
+            access_token_secret=ACCESS_TOKEN_SECRET,
+        )
+        last_reply_to_id = None
+        for tweet in tweets:
+            status = api.PostUpdate(tweet, in_reply_to_status_id=last_reply_to_id)
+            last_reply_to_id = status.id
     return
 
 
