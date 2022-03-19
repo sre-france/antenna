@@ -10,6 +10,7 @@ from feedparser.sanitizer import _HTMLSanitizer
 
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
+DRY_RUN = os.environ.get("TELEGRAM_DRY_RUN", "false").lower() in ["true", "yes", "1"]
 
 TEMPLATE = """
 <em>From</em> {link}
@@ -77,7 +78,9 @@ def main(filename):
     with open(filename, "r") as f:
         payload = json.load(f)
     message = format_message(payload)
-    send_message(message)
+    print(f"Message: {message}")
+    if not DRY_RUN:
+        send_message(message)
 
 
 if __name__ == "__main__":
