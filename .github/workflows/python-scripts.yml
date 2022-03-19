@@ -27,6 +27,7 @@ jobs:
         pip install flake8 pytest
         pip install -r scripts/post-to-twitter/requirements.txt
         pip install -r scripts/post-to-telegram/requirements.txt
+        pip install -r scripts/md-to-json/requirements.txt
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
@@ -44,4 +45,8 @@ jobs:
     - name: Test post-to-telegram script
       run: |
         cd $GITHUB_WORKSPACE/scripts/post-to-telegram/
+        pytest -v
+    - name: Test md-to-json script
+      run: |
+        cd $GITHUB_WORKSPACE/scripts/md-to-json/
         pytest -v
