@@ -23,9 +23,9 @@ from main import md_to_json
 class TestMDtoJSON(unittest.TestCase):
     def test_basic(self):
         """A basic test for the Happy Path."""
-        with open("test_data/01-markdown.md", "r") as f:
+        with open("test_data/01-content.md", "r") as f:
             markdown = f.read()
-        with open("test_data/01-expected.json", "r") as f:
+        with open("test_data/01-content.expected.json", "r") as f:
             expected = f.read().strip()
         json_data = md_to_json(markdown)
         self.assertEqual(json_data, expected)
