@@ -30,6 +30,15 @@ class TestMDtoJSON(unittest.TestCase):
         json_data = md_to_json(markdown)
         self.assertEqual(json_data, expected)
 
+    def test_non_supported_html(self):
+        """Test conversion of non-supported HTML"""
+        with open("test_data/02-non-supported-html.md", "r") as f:
+            markdown = f.read()
+        with open("test_data/02-non-supported-html.expected.json", "r") as f:
+            expected = f.read().strip()
+        json_data = md_to_json(markdown)
+        self.assertEqual(json_data, expected)
+
 
 if __name__ == "__main__":
     unittest.main()
