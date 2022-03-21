@@ -16,9 +16,30 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from datetime import datetime
+from io import StringIO
+from markdown import Markdown
 import frontmatter
 import json
+import markdown
 import sys
+
+
+def unmark_element(element, stream=None):
+    if stream is None:
+        stream = StringIO()
+    if element.text:
+        stream.write(element.text)
+    for sub in element:
+        unmark_element(sub, stream)
+    if element.tail:
+        stream.write(element.tail)
+    return stream.getvalue()
+
+
+# patching Markdown to support convertion to plaintext
+Markdown.output_formats["plain"] = unmark_element
+__md = Markdown(output_format="plain")
+__md.stripTopLevelTags = False
 
 
 class CustomJSONEncoder(json.JSONEncoder):
@@ -28,11 +49,12 @@ class CustomJSONEncoder(json.JSONEncoder):
         return super().default(obj)
 
 
-def md_to_json(markdown):
-    post = frontmatter.loads(markdown).to_dict()
+def md_to_json(text):
+    post = frontmatter.loads(text).to_dict()
 
     post["id"] = post["link"]
-    post["plain"] = post["content"]
+    post["plain"] = __md.convert(post["content"]) + "\n"
+    post["content"] = markdown.markdown(post["content"]) + "\n"
 
     json_data = json.dumps(post, indent=2, sort_keys=True, cls=CustomJSONEncoder)
     return json_data
@@ -40,8 +62,8 @@ def md_to_json(markdown):
 
 def main(filename):
     with open(filename) as f:
-        markdown = f.read()
-    json_data = md_to_json(markdown)
+        text = f.read()
+    json_data = md_to_json(text)
     print(json_data)
 
 
