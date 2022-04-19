@@ -1,0 +1,23 @@
+baseURL = "https://sre-france.github.io/antenna/"
+languageCode = "en-us"
+title = "Antenna"
+
+disableKinds = ["taxonomy", "taxonomyTerm", "RSS", "sitemap", "home", "section"]
+
+[params]
+  description = "An automated and collaborative broadcast system to share news and announcements on Twitter and Telegram"
+
+[outputs]
+  page = ["html", "json"]
+
+[deployment]
+order = [".png$", ".jpg$", ".gif$", ".svg$"]
+
+# disable the taxonomy generations
+[taxonomies]
+  tag = ""
+  group = ""
+  category = ""
+
+#disableKinds = ["taxonomyTerm"]
+
