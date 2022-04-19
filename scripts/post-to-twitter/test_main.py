@@ -53,9 +53,7 @@ class TestFormatTweets(unittest.TestCase):
         """A basic test for the Happy Path."""
         with open("test_data/01-payload.json", "r") as f:
             payload = json.load(f)
-        expected = [
-            "This is the content. https://www.example.com/an-example/ shared by @pabluk"
-        ]
+        expected = ["This is the content. https://www.example.com/an-example/"]
 
         tweets = format_tweets(payload)
         self.assertEqual(tweets, expected)
@@ -67,9 +65,8 @@ class TestFormatTweets(unittest.TestCase):
         expected = [
             "This succinct article from the Honeycomb blog is a great starting point to understand the fundamentals of "
             "Observability, like metrics, logs, traces and structured events, as well as the concepts of context, "
-            "dimensionality and […] https://www.honeycomb.io/blog/observability-101-terminology-and-concepts/ shared "
-            "by @pabluk",
-            "cardinality. It also includes additional links for further reading about #o11y and distributed tracing.",
+            "dimensionality and cardinality. It also […] https://www.honeycomb.io/blog/observability-101-terminology-and-concepts/",
+            "includes additional links for further reading about #o11y and distributed tracing.",
         ]
 
         tweets = format_tweets(payload)
@@ -82,11 +79,11 @@ class TestFormatTweets(unittest.TestCase):
         expected = [
             "Another feedback on RoR application migration @ Shopify with a long paper explaining the different steps / "
             "challenges (showing a few hints / IRL examples). It’s an interesting reading, since the question of Monolith "
-            "vs modular […] https://engineering.shopify.com/blogs/engineering/shopify-monolith shared by @tormath1",
-            "applications is not easy to answer and there is no generic method to solve it. So, we developed a new tool "
+            "vs modular applications is not […] https://engineering.shopify.com/blogs/engineering/shopify-monolith",
+            "easy to answer and there is no generic method to solve it. So, we developed a new tool "
             "called Packwerk to analyze static constant references. […] We’re planning to make Packwerk open source "
-            "soon. Stay tuned! I’m definitely looking for to see how they […]",
-            "proceed and why not try to make it language agnostic.",
+            "soon. Stay tuned! I’m definitely looking for to see how they proceed and why not try […]",
+            "to make it language agnostic.",
         ]
 
         tweets = format_tweets(payload)

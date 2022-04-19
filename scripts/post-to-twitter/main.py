@@ -85,9 +85,7 @@ def format_tweets(payload):
     content = payload["plain"]
     content = " ".join(content.split())
     content = unescape(content)
-    ending = """ {link} shared by @{username}""".format(
-        link=payload["link"], username=payload["twitter_username"]
-    )
+    ending = """ {link}""".format(link=payload["link"])
 
     if "hashtags" in payload and payload["hashtags"]:
         # hashtags: "#hash1,#hash2"
