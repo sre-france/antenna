@@ -27,56 +27,56 @@ class TestSlugyFunction(unittest.TestCase):
     def test_happy_path(self):
         date = "2020-10-02"
         title = "This is a title"
-        expected = "posts/2020-10-02-this-is-a-title.md"
+        expected = "content/posts/2020-10-02-this-is-a-title.md"
         output = slugify(date, title)
         self.assertEqual(expected, output)
 
     def test_single_quote(self):
         date = "2020-10-02"
         title = "It's a title"
-        expected = "posts/2020-10-02-its-a-title.md"
+        expected = "content/posts/2020-10-02-its-a-title.md"
         output = slugify(date, title)
         self.assertEqual(expected, output)
 
     def test_single_quote_utf(self):
         date = "2020-10-02"
         title = "Under Deconstruction: The State of Shopify’s Monolith"
-        expected = "posts/2020-10-02-under-deconstruction-the-state-of-shopifys-monolith.md"
+        expected = "content/posts/2020-10-02-under-deconstruction-the-state-of-shopifys-monolith.md"
         output = slugify(date, title)
         self.assertEqual(expected, output)
 
     def test_question_mark(self):
         date = "2020-10-02"
         title = "how they test ?"
-        expected = "posts/2020-10-02-how-they-test.md"
+        expected = "content/posts/2020-10-02-how-they-test.md"
         output = slugify(date, title)
         self.assertEqual(expected, output)
 
     def test_percent_sign(self):
         date = "2020-10-02"
         title = "Why is 100% reliability the wrong target?"
-        expected = "posts/2020-10-02-why-is-100-reliability-the-wrong-target.md"
+        expected = "content/posts/2020-10-02-why-is-100-reliability-the-wrong-target.md"
         output = slugify(date, title)
         self.assertEqual(expected, output)
 
     def test_em_dash_and_ellipsis(self):
         date = "2020-10-02"
         title = "SLO — From Nothing to… Production"
-        expected = "posts/2020-10-02-slo-from-nothing-to-production.md"
+        expected = "content/posts/2020-10-02-slo-from-nothing-to-production.md"
         output = slugify(date, title)
         self.assertEqual(expected, output)
 
     def test_comma_punctuation(self):
         date = "2021-03-09"
         title = "Everything is broken, and it’s okay"
-        expected = "posts/2021-03-09-everything-is-broken-and-its-okay.md"
+        expected = "content/posts/2021-03-09-everything-is-broken-and-its-okay.md"
         output = slugify(date, title)
         self.assertEqual(expected, output)
 
     def test_exclamation_mark(self):
         date = "2021-03-09"
         title = "Hello, SRE world!"
-        expected = "posts/2021-03-09-hello-sre-world.md"
+        expected = "content/posts/2021-03-09-hello-sre-world.md"
         output = slugify(date, title)
         self.assertEqual(expected, output)
 
@@ -95,7 +95,7 @@ class TestMain(unittest.TestCase):
                     "body": "url: https://example.com\r\nhashtags: #hash1,#hash2\r\n---\r\nMarkdown content..."
                 }
             }"""
-        expected = """posts/2020-09-12-first-article.md
+        expected = """content/posts/2020-09-12-first-article.md
 ---
 title: "First article"
 date: 2020-09-12T11:19:56Z
