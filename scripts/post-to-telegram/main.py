@@ -65,9 +65,7 @@ def format_message(payload):
     See https://core.telegram.org/bots/api#html-style
     """
 
-    user = '<a href="https://github.com/{username}">@{username}</a>'.format(
-        username=payload["github_username"]
-    )
+    user = '<a href="https://github.com/{username}">@{username}</a>'.format(username=payload["github_username"])
     content = clean_html(payload["content"])
     message = TEMPLATE.format(
         link=payload["link"],

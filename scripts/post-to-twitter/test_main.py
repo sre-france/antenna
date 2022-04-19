@@ -65,7 +65,8 @@ class TestFormatTweets(unittest.TestCase):
         expected = [
             "This succinct article from the Honeycomb blog is a great starting point to understand the fundamentals of "
             "Observability, like metrics, logs, traces and structured events, as well as the concepts of context, "
-            "dimensionality and cardinality. It also […] https://www.honeycomb.io/blog/observability-101-terminology-and-concepts/",
+            "dimensionality and cardinality. It also […] "
+            "https://www.honeycomb.io/blog/observability-101-terminology-and-concepts/",
             "includes additional links for further reading about #o11y and distributed tracing.",
         ]
 

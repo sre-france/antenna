@@ -55,12 +55,7 @@ def word_length(word):
         length = SHORT_URL_LENGTH
     else:
         for char in word:
-            if any(
-                [
-                    ord(normalize("NFC", char)) in char_range
-                    for char_range in unicode_ranges
-                ]
-            ):
+            if any([ord(normalize("NFC", char)) in char_range for char_range in unicode_ranges]):
                 length += 1
             else:
                 length += 2
@@ -102,18 +97,14 @@ def format_tweets(payload):
         current_line_length += word_length(word) + 1
 
         if len(tweets) == 0:
-            if current_line_length > (
-                CHARACTER_LIMIT - calc_expected_status_length(placeholder + ending)
-            ):
+            if current_line_length > (CHARACTER_LIMIT - calc_expected_status_length(placeholder + ending)):
                 tweets.append(" ".join(line) + placeholder + ending)
                 line = [word]
                 current_line_length = word_length(word)
             else:
                 line.append(word)
         else:
-            if current_line_length > (
-                CHARACTER_LIMIT - calc_expected_status_length(placeholder)
-            ):
+            if current_line_length > (CHARACTER_LIMIT - calc_expected_status_length(placeholder)):
                 tweets.append(" ".join(line) + placeholder)
                 line = [word]
                 current_line_length = word_length(word)
@@ -134,11 +125,7 @@ def send_tweets(tweets):
     for i, tweet in enumerate(tweets):
         length = calc_expected_status_length(tweet)
         nro = i + 1
-        print(
-            "Tweet {nro}/{total} ({length} chars):\n{tweet}".format(
-                nro=nro, total=total, length=length, tweet=tweet
-            )
-        )
+        print("Tweet {nro}/{total} ({length} chars):\n{tweet}".format(nro=nro, total=total, length=length, tweet=tweet))
 
     if not DRY_RUN:
         api = twitter.Api(
