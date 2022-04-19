@@ -43,7 +43,7 @@ def slugify(date, title):
     slug = slug.replace(" ", "-")
 
     date = date[:10]
-    return f"posts/{date}-{slug}.md"
+    return f"content/posts/{date}-{slug}.md"
 
 
 def get_twitter_username(username):
