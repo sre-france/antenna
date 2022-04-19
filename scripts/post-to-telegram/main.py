@@ -32,8 +32,6 @@ TEMPLATE = """
 <em>From</em> {link}
 
 {content}
-
-<em>Shared by {user} via reliability.re</em>
 """
 
 
